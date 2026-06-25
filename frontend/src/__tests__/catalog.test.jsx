@@ -192,4 +192,46 @@ describe('Katalog, korpa i placanje (MSW)', () => {
       expect(screen.getByText('Uspesno kreirano')).toBeInTheDocument()
     })
   })
+
+  it('Prikazuje poruku o gresci kada API nije dostupan', async () => {
+    server.use(
+      http.get('*/api/parts', () => {
+        return HttpResponse.error()
+      })
+    )
+    renderWithContext(<PartsPage />)
+    
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toHaveTextContent('Greska pri ucitavanju kataloga.')
+    })
+  })
+
+  it('Prikazuje opciju Obavesti me i uspesno salje zahtev', async () => {
+    const user = userEvent.setup()
+    server.use(
+      http.post('*/api/notifications/restock', () => {
+        return HttpResponse.json({ message: 'Success' }, { status: 201 })
+      })
+    )
+    
+    renderWithContext(
+      <Routes>
+        <Route path="/parts/:id" element={<PartDetailsPage />} />
+      </Routes>,
+      '/parts/2'
+    )
+
+    await waitFor(() => expect(screen.getByText('Out of stock Filter')).toBeInTheDocument())
+    
+    expect(screen.getByText('Obavesti me kada bude na stanju')).toBeInTheDocument()
+    
+    const emailInput = screen.getByPlaceholderText('vas@email.com')
+    await user.type(emailInput, 'test@example.com')
+    
+    await user.click(screen.getByRole('button', { name: 'Obavesti me' }))
+    
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toHaveTextContent('Zahtev za obavestenje uspesno poslat.')
+    })
+  })
 })

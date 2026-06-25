@@ -10,13 +10,13 @@
 
 | Kategorija testova | Alat | Ukupno testova | Prošlo ✅ | Palo ❌ | Preskočeno ⏭️ | Vreme |
 |---|---|---|---|---|---|---|
-| Backend integracioni (REST API) | JUnit 5 + MockMvc + MySQL | 33 | 33 | 0 | 0 | 12.26s |
-| Frontend unit/integracioni (MSW) | Vitest + React Testing Library | 18 | 18 | 0 | 0 | 1.98s |
+| Backend integracioni (REST API) i Unit (Mockito) | JUnit 5 + Mockito + MockMvc | 38 | 38 | 0 | 0 | 12.77s |
+| Frontend unit/integracioni (MSW) | Vitest + React Testing Library | 20 | 20 | 0 | 0 | 1.72s |
 | Frontend produkcioni build | Vite | — | ✅ | — | — | 0.16s |
 | E2E (browser simulacija) | Playwright + Chromium | 2 | 2 | 0 | 0 | 8.9s |
-| **UKUPNO** | | **53** | **53** | **0** | **0** | **~23s** |
+| **UKUPNO** | | **60** | **60** | **0** | **0** | **~24s** |
 
-> **Rezultat: SVE PROLAZI ✅ — 53/53 testova prošlo bez grešaka.**
+> **Rezultat: SVE PROLAZI ✅ — 60/60 testova prošlo bez grešaka.**
 
 ---
 
@@ -34,10 +34,11 @@
 | `RestockNotificationApiTests` | 5 | 5 | 0 | 0.84s |
 | `PartApiTests` | 5 | 5 | 0 | 0.51s |
 | `SpecialOrderApiTests` | 5 | 5 | 0 | 0.45s |
-| `CartApiTests` | 3 | 3 | 0 | 0.74s |
+| `CartApiTests` | 3 | 3 | 0 | 0.66s |
+| `OrderServiceUnitTests` (Mockito) | 5 | 5 | 0 | — |
 | `AuthApiTests` | 5 | 5 | 0 | — |
 | `OrderApiTests` | 9 | 9 | 0 | — |
-| **Ukupno** | **33** | **33** | **0** | **~3s** (testovi) |
+| **Ukupno** | **38** | **38** | **0** | **~3.5s** (testovi) |
 
 ### 2.2 Pokriveni scenariji
 
@@ -50,12 +51,14 @@
 | **Obaveštenja** | Kreiranje zahteva za obaveštenje o dostupnosti (restock notification), validacija email/telefon podataka |
 | **Specijalne porudžbine** | Kreiranje specijalnog zahteva, pregled od strane zaposlenog, promena statusa sa porukom |
 
-### 2.3 JaCoCo coverage
+### 2.3 JaCoCo coverage (Pokrivenost koda)
 
 JaCoCo izveštaj je generisan i dostupan na lokaciji:  
 `backend/target/site/jacoco/index.html`
 
-Analizirano: **74 klase**.
+- **Analizirano:** 74 klase
+- **Pokrivenost instrukcija (Instructions covered):** 3475 / 3846
+- **Ukupan procenat:** **90.35%** (Odličan nivo pokrivenosti celog Spring Boot bekenda)
 
 ---
 
@@ -70,9 +73,9 @@ Analizirano: **74 klase**.
 |---|---|---|---|---|
 | `src/App.test.jsx` | 5 | 5 | 0 | 263ms |
 | `src/__tests__/auth.test.jsx` | 7 | 7 | 0 | 964ms |
-| `src/__tests__/catalog.test.jsx` | 4 | 4 | 0 | 513ms |
-| `src/__tests__/employee-admin.test.jsx` | 2 | 2 | 0 | 396ms |
-| **Ukupno** | **18** | **18** | **0** | **~2.1s** |
+| `src/__tests__/catalog.test.jsx` | 6 | 6 | 0 | 552ms |
+| `src/__tests__/employee-admin.test.jsx` | 2 | 2 | 0 | 390ms |
+| **Ukupno** | **20** | **20** | **0** | **~2.1s** |
 
 ### 3.2 Detalji po testu
 
@@ -98,7 +101,7 @@ Analizirano: **74 klase**.
 | 6 | Preusmerava neautorizovane korisnike na login | ✅ |
 | 7 | Prikazuje korisnicke podatke nakon hidracije | ✅ |
 
-#### `catalog.test.jsx` (4 testa)
+#### `catalog.test.jsx` (6 testova)
 
 | # | Naziv testa | Status |
 |---|---|---|
@@ -106,6 +109,8 @@ Analizirano: **74 klase**.
 | 2 | Prikazuje detalje artikla | ✅ |
 | 3 | Pretrazuje artikle po nazivu | ✅ |
 | 4 | Dodaje artikal u korpu sa uspesnom porukom | ✅ |
+| 5 | Prikazuje poruku o grešci kada API nije dostupan | ✅ |
+| 6 | Prikazuje opciju Obavesti me i uspešno šalje zahtev | ✅ |
 
 #### `employee-admin.test.jsx` (2 testa)
 
@@ -184,6 +189,8 @@ Analizirano: **74 klase**.
 | FE-PARTS-01 | Lista artikala | `catalog.test.jsx` (test 1) | ✅ |
 | FE-PARTS-02 | Filteri | `catalog.test.jsx` (test 3) | ✅ |
 | FE-CART-01 | Dodavanje u korpu | `catalog.test.jsx` (test 4) | ✅ |
+| FE-NOTIFY-01 | Obavesti me (frontend tok) | `catalog.test.jsx` (test 6) | ✅ |
+| FE-API-01 | API greška | `catalog.test.jsx` (test 5) | ✅ |
 | FE-ORDER-01 | Slanje porudžbine | `checkout.spec.js` (koraci 5-7) | ✅ |
 | FE-AUTH-01 | Login | `auth.test.jsx` (test 1) | ✅ |
 | TS-01 | Registracija klijenta | `auth.spec.js` | ✅ |
@@ -200,8 +207,8 @@ Analizirano: **74 klase**.
 
 Sva četiri nivoa testiranja su uspešno izvršena bez ikakvih grešaka:
 
-- **33 backend testa** pokrivaju REST API za autentifikaciju, katalog, korpu, porudžbine, obaveštenja i specijalne porudžbine.
-- **18 frontend testova** pokrivaju renderovanje komponenti, korisničke interakcije i komunikaciju sa backendom preko MSW mock servera.
+- **38 backend testova** (uključujući Unit testove sa Mockito framework-om i Integracione REST testove) pokrivaju autentifikaciju, katalog, korpu, porudžbine, obaveštenja i specijalne porudžbine sa **90.35%** linija koda pokrivenim.
+- **20 frontend testova** pokrivaju renderovanje komponenti, korisničke interakcije, greške i komunikaciju sa backendom preko MSW mock servera.
 - **Produkcioni build** se kompajlira uspešno sa optimizovanim bundle-om od ~83 kB (gzip).
 - **2 E2E testa** pokrivaju kompletne korisničke tokove od registracije do obrade porudžbine, prolaze kroz ceo stek (Chromium → React → Spring Boot → MySQL).
 
