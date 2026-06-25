@@ -40,7 +40,7 @@ public class SecurityConfig {
 			.cors(Customizer.withDefaults())
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers("/api/health", "/api/auth/**", "/api/parts/**", "/error").permitAll()
+				.requestMatchers("/api/health", "/api/auth/**", "/api/parts/**", "/api/notifications/restock", "/api/special-orders", "/error").permitAll()
 				.requestMatchers("/api/admin/**").hasRole("ADMIN")
 				.requestMatchers("/api/employee/**").hasAnyRole("EMPLOYEE", "ADMIN")
 				.anyRequest().authenticated())

@@ -144,4 +144,8 @@ public class Part {
 	public void deactivate() {
 		this.active = false;
 	}
+
+	public void decreaseStock(int quantity) {
+		this.stockQuantity -= quantity;
+	}
 }

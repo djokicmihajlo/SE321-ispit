@@ -4,7 +4,7 @@
 
 Ovo je zivi plan implementacije. Azurira se tokom rada kako faze budu zavrsavane, kako se budu donosile tehnicke odluke i kako testovi budu dodavani.
 
-Trenutni status: backend korpa je implementirana i pokrivena API testovima; sledeci radni korak su porudzbine i placanje.
+Trenutni status: backend specijalno porucivanje je implementirano i pokriveno API testovima; sledeci radni korak je frontend auth i osnovni layout.
 
 ## 1. Cilj projekta
 
@@ -543,41 +543,41 @@ Planirane migracije:
 
 ### Faza 6 - Porudzbine i placanje
 
-- [ ] Implementirati `Order`, `OrderItem`, `Payment`.
-- [ ] Implementirati `CreateOrderRequest`.
-- [ ] Implementirati `OrderService.createOrder`.
-- [ ] Implementirati izracunavanje ukupne cene na backendu.
-- [ ] Implementirati umanjenje zaliha.
-- [ ] Implementirati mock card payment service.
-- [ ] Implementirati pouzece.
-- [ ] Implementirati statusne prelaze.
-- [ ] Napisati `OrderServiceTest`.
-- [ ] Napisati integracione testove iz `specs.md`.
+- [x] Implementirati `Order`, `OrderItem`, `Payment`.
+- [x] Implementirati `CreateOrderRequest`.
+- [x] Implementirati `OrderService.createOrder`.
+- [x] Implementirati izracunavanje ukupne cene na backendu.
+- [x] Implementirati umanjenje zaliha.
+- [x] Implementirati mock card payment service.
+- [x] Implementirati pouzece.
+- [x] Implementirati statusne prelaze.
+- [x] Napisati `OrderServiceTest`.
+- [x] Napisati integracione testove iz `specs.md`.
 
 ### Faza 7 - Employee obrada porudzbina
 
-- [ ] Implementirati pregled porudzbina po statusu.
-- [ ] Implementirati promenu statusa.
-- [ ] Implementirati zabranu nedozvoljenih statusnih prelaza.
-- [ ] Implementirati prikaz ponistenih porudzbina.
-- [ ] Dodati API testove za employee tok.
+- [x] Implementirati pregled porudzbina po statusu.
+- [x] Implementirati promenu statusa.
+- [x] Implementirati zabranu nedozvoljenih statusnih prelaza.
+- [x] Implementirati prikaz ponistenih porudzbina.
+- [x] Dodati API testove za employee tok.
 
 ### Faza 8 - Obavesti me
 
-- [ ] Implementirati `RestockNotificationRequest`.
-- [ ] Implementirati public/client endpoint.
-- [ ] Implementirati validaciju email/phone.
-- [ ] Implementirati mock notification service.
-- [ ] Implementirati employee pregled zahteva.
-- [ ] Dodati unit/API testove.
+- [x] Implementirati `RestockNotificationRequest`.
+- [x] Implementirati public/client endpoint.
+- [x] Implementirati validaciju email/phone.
+- [x] Implementirati mock notification service.
+- [x] Implementirati employee pregled zahteva.
+- [x] Dodati unit/API testove.
 
 ### Faza 9 - Specijalno porucivanje
 
-- [ ] Implementirati `SpecialOrderRequest`.
-- [ ] Implementirati public/client kreiranje zahteva.
-- [ ] Implementirati employee pregled zahteva.
-- [ ] Implementirati employee odgovor/status.
-- [ ] Dodati API testove.
+- [x] Implementirati `SpecialOrderRequest`.
+- [x] Implementirati public/client kreiranje zahteva.
+- [x] Implementirati employee pregled zahteva.
+- [x] Implementirati employee odgovor/status.
+- [x] Dodati API testove.
 
 ### Faza 10 - Frontend auth i layout
 
@@ -719,3 +719,9 @@ Prva verzija se smatra zavrsenom kada:
 | 2026-06-25 | Regresija prolazi posle katalog faze: 11 backend testova, 2 frontend testa i frontend build | Zavrseno |
 | 2026-06-25 | Implementirana backend korpa: pregled, dodavanje, promena kolicine, uklanjanje i praznjenje | Zavrseno |
 | 2026-06-25 | Regresija prolazi posle korpa faze: 14 backend testova, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementirane backend porudzbine, mock placanje, umanjenje zaliha i employee statusni prelazi | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle order faze: 23 backend testa, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementiran backend "Obavesti me" tok: public/client kreiranje, validacija kontakta i employee pregled | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle notification faze: 28 backend testova, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementirano backend specijalno porucivanje: public/client kreiranje, client pregled i employee obrada/status | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle special order faze: 33 backend testa, 2 frontend testa i frontend build | Zavrseno |
