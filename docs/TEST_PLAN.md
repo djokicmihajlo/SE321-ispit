@@ -1,55 +1,82 @@
-# Plan testiranja: Prodavnica auto delova
+# SE321 Dokumentacija - Plan testiranja Auto Parts aplikacije
 
-## 1. Ciljevi testiranja
-Ovaj plan obuhvata strategiju testiranja celokupnog softverskog rešenja za prodavnicu auto delova. Cilj je da se kroz različite nivoe testiranja osigura da sistem pouzdano obavlja sve ključne poslovne procese:
-- Registraciju, autentifikaciju i autorizaciju (klijenti, zaposleni, administratori).
-- Rad sa katalogom artikala, filtriranje i pretragu.
-- Upravljanje korisničkom korpom i proces naplate.
-- Mehanizme obaveštavanja ("Obavesti me") kada željeni artikal nije na stanju.
-- Proces specijalnog poručivanja auto delova.
-- Upravljanje narudžbinama i zalihama od strane zaposlenih radnika.
+## 1. Osnovni podaci
+**Naziv projekta:** Auto Parts Shop
+**Predmet:** SE321 - Obezbeđenje kvaliteta, testiranje i evolucija softvera
+**Glavni cilj:** Uspostavljanje celokupnog QA sloja, automatizovanog testiranja (Frontend, Backend, E2E) i osiguranje stabilnosti aplikacije pre puštanja u rad.
 
-## 2. Nivoi i obim testiranja
+## 2. Test strategija
+Testiranje je podeljeno na više nivoa kako bi se obezbedila potpuna stabilnost:
 
-Aplikacija će biti testirana kroz četiri glavna nivoa:
+| Nivo | Alati | Svrha |
+|---|---|---|
+| **Jedinično (Unit)** | JUnit 5, Mockito | Provera izolovane poslovne logike (npr. `OrderService`), uz mock-ovanje zavisnosti. |
+| **Integraciono (Backend)** | Spring Boot Test, MockMvc | Provera Express/Spring REST API-ja i integracije sa MySQL bazom podataka. |
+| **Frontend (Komponente)**| Vitest, React Testing Library, MSW | Provera React komponenti, formi, korisničkih interakcija i simulacija API poziva. |
+| **End-to-end (E2E)** | Playwright, Chromium | Provera glavnih korisničkih tokova kroz stvarni brauzer. |
+| **Regresiono testiranje** | npm scripts | Provera da nove izmene ne kvare postojeće funkcionalnosti. |
 
-### 2.1. Jedinično testiranje (Unit Testing)
-Služi za proveru ključne biznis logike u potpunoj izolaciji, bez konekcije sa pravom bazom podataka ili pokretanja celokupnog okruženja.
-- **OrderService:** Najvažniji deo sistema koji je neophodno izolovano testirati korišćenjem **Mockito** framework-a. Svi repozitorijumi i eksterni servisi se simuliraju (mock-uju).  
-  *Scenariji koji se moraju proveriti:*
-  - Uspešno kreiranje porudžbine i tačno obračunavanje ukupne cene.
-  - Pokušaj kreiranja porudžbine sa praznom korpom (očekuje se validaciona greška).
-  - Pokušaj kreiranja narudžbine za klijenta koji ne postoji u sistemu.
-  - Pokušaj kupovine veće količine artikala nego što je dostupno na zalihama (zalihe se ne smeju menjati u slučaju greške).
+## 3. Plan testiranja
 
-### 2.2. Integraciono testiranje
-Proverava da li različite komponente sistema pravilno komuniciraju. Pokreće se kompletna Spring aplikacija sa konekcijom ka namenskoj, izolovanoj MySQL testnoj bazi.
-- **REST API:** Testiranje svih kontrolera pomoću `MockMvc`.
-- Proveravaju se HTTP statusni kodovi, validacije ulaznih podataka, sigurnosni mehanizmi (JWT validacija i provera uloga) i stvarne izmene nad bazom podataka.
-- *Ključni tokovi:* Pravilno ažuriranje statusa porudžbine (`CREATED` u `PROCESSING`, `SHIPPED`, itd.), blokiranje prelaza unazad (npr. iz `DELIVERED` u `CREATED`) i provera autorizacije zaposlenih u odnosu na klijente.
+### 3.1 Cilj testiranja
+Cilj je da se proveri stabilnost postojeće prodavnice auto delova kroz automatizovani QA proces. Testiranjem se proverava da li ključne funkcionalnosti (katalog, korpa, poručivanje, autentifikacija, obrada porudžbina) rade ispravno.
 
-### 2.3. Testiranje korisničkog interfejsa (Frontend)
-Fokusira se isključivo na web klijent (React aplikaciju). Svi odgovori sa servera moraju biti presretnuti i simulirani (Mock Service Worker - MSW) kako bi se UI testirao nezavisno od stanja bekenda.
-- Provera vizuelnog prikaza i rutiranja.
-- Simulacija korisničkih interakcija (unos teksta, klikovi, odabir filtera).
-- **Dodatni ključni testovi:**
-  - *Dugme "Obavesti me":* Proveriti da li se za artikle van zaliha pravilno prikazuje opcija i uspešno šalje simulirani zahtev.
-  - *Pad sistema (Error handling):* Testirati prikaz adekvatne poruke i reakciju korisničkog interfejsa kada backend server uopšte nije dostupan (simuliran pad mreže).
+### 3.2 Opseg testiranja
+**U opsegu testiranja su:**
+- frontend komponente, forme, state management (Context API)
+- backend REST API rute (Spring Boot)
+- MySQL integracija kroz lokalnu bazu
+- glavni korisnički tokovi kroz browser (E2E)
+- regresioni test paket
 
-### 2.4. End-to-End (E2E) testiranje
-Služi za proveru sistema iz ugla stvarnog korisnika. Pokreće se pretraživač u pozadini (Playwright) koji navigira kroz pravu aplikaciju na realnom okruženju.
-- *Regresioni tok:* Novi klijent otvara sajt, registruje se, pronalazi artikal, dodaje u korpu, izvršava kupovinu pouzećem, zatim se zaposleni prijavljuje u sistem i obeležava porudžbinu kao isporučenu.
+**Van opsega su:**
+- produkcioni deployment na cloud platformu
+- provera stvarnih naplata karticom (koristi se mock)
+- slanje pravih email/SMS poruka (koristi se mock)
+- kompletno performance/load testiranje
 
-## 3. Tehnički uslovi i alati
+### 3.3 Test okruženje
+Lokalno test okruženje koristi:
+- Java 17+ (Spring Boot backend)
+- Node.js 20+ (React/Vite frontend)
+- MySQL 8.0+ (MAMP ili lokalni servis)
 
-Da bi se testiranje uspešno obavilo, neophodni su sledeći tehnički preduslovi:
-- **Lokalno testno okruženje:** Namenska test baza u koju aplikacija može slobodno pisati i brisati podatke. Prava produkciona baza se nikada ne koristi u testne svrhe.
-- **Backend alati:** JUnit 5, Mockito, Spring Boot Test, MockMvc i JaCoCo za merenje procenata pokrivenosti (Coverage).
-- **Frontend alati:** Vitest, React Testing Library i MSW (Mock Service Worker).
-- **E2E alati:** Playwright (Chromium).
+Za testiranje se koriste posebne baze kako se ne bi oštetili podaci za razvoj:
+- **Razvojna baza:** `auto_parts_shop_dev`
+- **Testna baza:** `auto_parts_shop_test`
 
-## 4. Očekivanja i kriterijumi za uspešnost
-Aplikacija se smatra adekvatno testiranom kada se ispune sledeći uslovi:
-1. Svi napisani unit, integracioni, frontend i E2E testovi uspešno prolaze bez pada.
-2. Pokrivenost linija koda (Code coverage) na backendu iznosi preko 80% (optimalno oko 90%).
-3. Postoji jedinstvena CLI skripta koja programerima i testerima omogućava pokretanje apsolutno svih provera pritiskom na jedno dugme pre bilo kakve isporuke koda u produkciju.
+### 3.4 Ulazni i izlazni kriterijumi
+**Ulazni kriterijumi:**
+- backend može da se poveže na bazu
+- frontend build uspešno prolazi
+- aplikacija se uspešno podiže na portovima 8080 i 5173
+
+**Izlazni kriterijumi:**
+- svi frontend testovi prolaze
+- svi backend (Unit i API) testovi prolaze
+- svi E2E testovi prolaze
+- coverage rezultati su na zadovoljavajućem nivou (preko 80%)
+
+### 3.5 Rizici i mere ublažavanja
+| Rizik | Uticaj | Mera |
+|---|---|---|
+| Testovi slučajno brišu razvojne podatke | Visok | Striktno korišćenje `auto_parts_shop_test` baze u test profilima. |
+| E2E testovi pucaju usled sporog mrežnog odziva | Srednji | Povećati timeout u Playwright konfiguraciji i koristiti stabilne selektore. |
+| Frontend testovi postaju krhki zbog CSS izmena | Srednji | Korišćenje `getByRole` i semantičkog HTML-a umesto CSS klasa. |
+
+## 4. Osnovni test scenariji
+
+Definisano je preko 60 test scenarija. Izdvajamo ključne:
+
+| ID | Modul | Scenario | Tip |
+|---|---|---|---|
+| TS-001 | Auth | Registracija klijenta sa validnim podacima | Pozitivan |
+| TS-002 | Auth | Login sa pogrešnom lozinkom | Negativan |
+| TS-003 | Catalog | Pretraga artikala po filterima | Pozitivan |
+| TS-004 | Catalog | Dugme "Obavesti me" šalje request kad nema zaliha | Pozitivan |
+| TS-005 | Catalog | Pad API-ja prikazuje grešku korisniku | Negativan |
+| TS-006 | Cart | Dodavanje dostupnog artikla u korpu | Pozitivan |
+| TS-007 | Order (Unit) | `createOrder` sa praznom korpom (Mockito) | Negativan |
+| TS-008 | Order (API) | Dozvoljen statusni prelaz (CREATED -> PROCESSING) | Pozitivan |
+| TS-009 | Order (API) | Nedozvoljen statusni prelaz (DELIVERED -> CREATED) | Negativan |
+| TS-010 | E2E | Kompletan proces od dodavanja u korpu do porudžbine | Pozitivan |
