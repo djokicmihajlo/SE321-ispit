@@ -4,7 +4,7 @@
 
 Ovo je zivi plan implementacije. Azurira se tokom rada kako faze budu zavrsavane, kako se budu donosile tehnicke odluke i kako testovi budu dodavani.
 
-Trenutni status: scaffold projekta je napravljen; sledeci radni korak je baza i Flyway migracije.
+Trenutni status: backend korpa je implementirana i pokrivena API testovima; sledeci radni korak su porudzbine i placanje.
 
 ## 1. Cilj projekta
 
@@ -455,8 +455,8 @@ Legenda statusa:
 - [x] Pregledati projekte iz `projects/`.
 - [x] Napraviti `TEST_PLAN.md`.
 - [x] Napraviti `IMPLEMENTATION_PLAN.md`.
-- [ ] Potvrditi naziv baza u phpMyAdmin: `auto_parts_shop_dev` i `auto_parts_shop_test`.
-- [ ] Potvrditi da MAMP MySQL radi na portu `8889`.
+- [x] Potvrditi/napraviti baze u MAMP MySQL-u: `auto_parts_shop_dev` i `auto_parts_shop_test`.
+- [x] Potvrditi da MAMP MySQL radi na portu `8889`.
 
 ### Faza 1 - Scaffold projekta
 
@@ -491,55 +491,55 @@ Frontend dependencies:
 
 ### Faza 2 - Baza i migracije
 
-- [ ] Napraviti MySQL baze u phpMyAdmin.
+- [x] Napraviti MySQL baze u MAMP MySQL-u.
 - [x] Podesiti `application-local-mysql.properties`.
 - [x] Podesiti `application-test.properties`.
-- [ ] Dodati zastitu da test profil koristi samo `auto_parts_shop_test`.
-- [ ] Dodati Flyway migracije.
-- [ ] Dodati seed za admina, zaposlenog, klijenta i artikle.
+- [x] Dodati zastitu da test profil koristi samo `auto_parts_shop_test`.
+- [x] Dodati Flyway migracije.
+- [x] Dodati seed za admina, zaposlenog, klijenta i artikle.
 
 Planirane migracije:
 
-- [ ] `V1__create_users.sql`
-- [ ] `V2__create_parts_catalog.sql`
-- [ ] `V3__create_cart_tables.sql`
-- [ ] `V4__create_orders.sql`
-- [ ] `V5__create_notifications.sql`
-- [ ] `V6__create_special_orders.sql`
-- [ ] `V7__seed_initial_data.sql`
+- [x] `V1__create_users.sql`
+- [x] `V2__create_parts_catalog.sql`
+- [x] `V3__create_cart_tables.sql`
+- [x] `V4__create_orders.sql`
+- [x] `V5__create_notifications.sql`
+- [x] `V6__create_special_orders.sql`
+- [x] `V7__seed_initial_data.sql`
 
 ### Faza 3 - Backend auth i role
 
-- [ ] Implementirati `User` model.
-- [ ] Implementirati role.
-- [ ] Implementirati password hashing.
-- [ ] Implementirati JWT util/service.
-- [ ] Implementirati register endpoint za klijente.
-- [ ] Implementirati login endpoint.
-- [ ] Implementirati `/api/auth/me`.
-- [ ] Implementirati security config.
-- [ ] Implementirati admin dodavanje zaposlenog.
-- [ ] Napisati auth API testove.
+- [x] Implementirati `User` model.
+- [x] Implementirati role.
+- [x] Implementirati password hashing.
+- [x] Implementirati JWT util/service.
+- [x] Implementirati register endpoint za klijente.
+- [x] Implementirati login endpoint.
+- [x] Implementirati `/api/auth/me`.
+- [x] Implementirati security config.
+- [x] Implementirati admin dodavanje zaposlenog.
+- [x] Napisati auth API testove.
 
 ### Faza 4 - Katalog artikala
 
-- [ ] Implementirati entitete za artikle, kategorije i vozila.
-- [ ] Implementirati repository sloj.
-- [ ] Implementirati filter query.
-- [ ] Implementirati public `GET /api/parts`.
-- [ ] Implementirati public `GET /api/parts/{id}`.
-- [ ] Implementirati employee CRUD nad artiklima.
-- [ ] Dodati API testove za filtere i role.
+- [x] Implementirati entitete za artikle, kategorije i vozila.
+- [x] Implementirati repository sloj.
+- [x] Implementirati filter query.
+- [x] Implementirati public `GET /api/parts`.
+- [x] Implementirati public `GET /api/parts/{id}`.
+- [x] Implementirati employee CRUD nad artiklima.
+- [x] Dodati API testove za filtere i role.
 
 ### Faza 5 - Korpa
 
-- [ ] Implementirati `Cart` i `CartItem`.
-- [ ] Implementirati dodavanje dostupnog artikla.
-- [ ] Implementirati zabranu dodavanja artikla bez zaliha.
-- [ ] Implementirati promenu kolicine.
-- [ ] Implementirati uklanjanje stavke.
-- [ ] Implementirati praznjenje korpe.
-- [ ] Dodati API testove za korpu.
+- [x] Implementirati `Cart` i `CartItem`.
+- [x] Implementirati dodavanje dostupnog artikla.
+- [x] Implementirati zabranu dodavanja artikla bez zaliha.
+- [x] Implementirati promenu kolicine.
+- [x] Implementirati uklanjanje stavke.
+- [x] Implementirati praznjenje korpe.
+- [x] Dodati API testove za korpu.
 
 ### Faza 6 - Porudzbine i placanje
 
@@ -623,7 +623,7 @@ Planirane migracije:
 - [ ] Dodati e2e helper za registraciju/login.
 - [ ] Dodati checkout e2e test.
 - [ ] Dodati employee order status e2e test.
-- [ ] Dodati root `test:regression` komandu.
+- [x] Dodati root `test:regression` komandu.
 
 ### Faza 15 - Zavrsna verifikacija
 
@@ -709,3 +709,13 @@ Prva verzija se smatra zavrsenom kada:
 | 2026-06-25 | Napravljen React/Vite frontend scaffold i pocetni ekran | Zavrseno |
 | 2026-06-25 | Dodati root npm scripts, MAMP MySQL profili, frontend test setup i backend health endpoint | Zavrseno |
 | 2026-06-25 | Verifikacija: frontend testovi prolaze, frontend build prolazi, backend compile prolazi sa `-DskipTests` | Zavrseno |
+| 2026-06-25 | Kreirane/potvrdjene MAMP MySQL baze `auto_parts_shop_dev` i `auto_parts_shop_test` | Zavrseno |
+| 2026-06-25 | Dodato 7 Flyway migracija za korisnike, katalog, korpu, porudzbine, obavestenja, specijalne porudzbine i seed | Zavrseno |
+| 2026-06-25 | Backend test prolazi nad `auto_parts_shop_test`; Flyway validirao i primenio sve migracije | Zavrseno |
+| 2026-06-25 | Root `npm run test:regression` prolazi | Zavrseno |
+| 2026-06-25 | Implementirani backend auth, JWT, role, admin employee endpoint i auth API testovi | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle auth faze: 6 backend testova, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementiran backend katalog artikala: public listing/detail/filteri i employee CRUD | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle katalog faze: 11 backend testova, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementirana backend korpa: pregled, dodavanje, promena kolicine, uklanjanje i praznjenje | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle korpa faze: 14 backend testova, 2 frontend testa i frontend build | Zavrseno |
