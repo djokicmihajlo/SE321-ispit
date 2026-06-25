@@ -51,6 +51,12 @@ class OrderApiTests {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
+	/*
+	 * Komponente koje se zajednicki testiraju:
+	 * OrderController -> OrderService -> OrderRepository -> testna baza podataka
+	 * CartController -> CartService -> CartRepository -> testna baza podataka
+	 * PaymentService (mock payment adapter)
+	 */
 	@Test
 	void createsCashOnDeliveryOrderFromCartAndReducesStock() throws Exception {
 		String clientToken = registerClient();
@@ -89,6 +95,10 @@ class OrderApiTests {
 			.andExpect(jsonPath("$[0].id").value(orderId));
 	}
 
+	/*
+	 * Komponente koje se zajednicki testiraju:
+	 * OrderController -> OrderService -> PaymentService -> OrderRepository -> testna baza podataka
+	 */
 	@Test
 	void cardPaymentFailureDoesNotCreateOrderOrReduceStock() throws Exception {
 		String clientToken = registerClient();
@@ -112,6 +122,10 @@ class OrderApiTests {
 			.andExpect(jsonPath("$", empty()));
 	}
 
+	/*
+	 * Komponente koje se zajednicki testiraju:
+	 * OrderController -> OrderService -> PartRepository (provera zaliha) -> testna baza podataka
+	 */
 	@Test
 	void rejectsOrderWhenCartPartBecomesOutOfStock() throws Exception {
 		String clientToken = registerClient();
@@ -139,6 +153,11 @@ class OrderApiTests {
 			.andExpect(jsonPath("$", empty()));
 	}
 
+	/*
+	 * Komponente koje se zajednicki testiraju:
+	 * SecurityFilterChain -> JwtAuthenticationFilter -> OrderController
+	 * Proverava se da Spring Security blokira klijentski JWT na employee endpointu.
+	 */
 	@Test
 	void clientCannotAccessEmployeeOrderStatusEndpoint() throws Exception {
 		String clientToken = registerClient();
@@ -153,6 +172,12 @@ class OrderApiTests {
 			.andExpect(status().isForbidden());
 	}
 
+	/*
+	 * Komponente koje se zajednicki testiraju:
+	 * OrderController -> OrderService (statusna masina) -> OrderRepository -> testna baza podataka
+	 * Proveravaju se dozvoljeni prelazi (CREATED->PROCESSING->SHIPPED->DELIVERED)
+	 * i nedozvoljeni prelazi (DELIVERED->CREATED).
+	 */
 	@Test
 	void employeeCanMoveOrderThroughAllowedStatusesAndInvalidTransitionIsRejected() throws Exception {
 		String clientToken = registerClient();
