@@ -599,3 +599,11 @@ Najbolji kandidati za dodatne poene:
 
 Testcontainers je koristan, ali posto projekat lokalno cilja MAMP MySQL, prvo cemo stabilizovati lokalni MySQL test profil. Testcontainers mozemo dodati kasnije ako bude potreban izolovan CI-friendly database setup.
 
+## 19. Status i ispunjenost plana
+
+Svi uslovi iz ovog plana su **uspešno ispunjeni**.
+- Unit i integracioni testovi (Backend) su izvršeni (38 testova, 90.35% pokrivenosti).
+- Frontend testovi su implementirani i uspešni (20 testova uz MSW).
+- E2E Playwright tok funkcioniše stabilno (2 testa).
+- Detaljan uvid u prolaženje testova nalazi se u fajlu `TEST_RESULTS.md`.
+

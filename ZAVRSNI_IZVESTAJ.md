@@ -1,25 +1,21 @@
-# Završni Izveštaj: Prodavnica Auto Delova
+# Završni Izveštaj
 
-Projekat izrade i automatizovanog testiranja prodavnice auto delova je uspešno i u celosti kompletiran prema specifikaciji `specs.md` i planu implementacije.
+## 1. Implementirani sistemi
+- **Backend (Spring Boot):** REST API, Spring Security (JWT), MySQL integracija (MAMP).
+- **Frontend (React/Vite):** Javni katalog, korisnička korpa, employee i admin dashboard. Context API za upravljanje stanjem.
 
-## Šta je postignuto:
-1. **Backend (Spring Boot)**: 
-   - Kompletno dizajniran REST API, entiteti, migracije baze i servisi sa robusnim `Order` i `Inventory` sistemom.
-   - Povezan sa MAMP MySQL lokalnom bazom uz postojanje posebnih profila `dev` i `test`.
-   - Pokriven sa 33 integraciona REST testa (Spring Boot Test + MockMvc) koji prolaze za manje od nekoliko sekundi.
+## 2. Testiranje i pokrivenost
+Ukupno je izvršeno **60 testova**:
+- **Backend (38 testova):** 
+  - 33 integraciona REST testa (`@SpringBootTest` + `MockMvc`).
+  - 5 izolovanih unit testova (`Mockito` za `OrderService`).
+  - JaCoCo pokrivenost koda iznosi **90.35%**.
+- **Frontend (20 testova):** 
+  - Komponentni testovi uz MSW simulaciju backend odgovora (uključujući error handlovanje i "Obavesti me" tok).
+- **E2E (2 testa):** 
+  - Playwright testiranje kompletnog toka (od registracije, preko kupovine, do promene statusa porudžbine).
+- Svi testovi se izvršavaju preko objedinjene skripte: `npm run test:regression`.
 
-2. **Frontend (React + Vite)**:
-   - Kompletna web aplikacija sa tri glavna aspekta poslovanja (Klijentski izlog, Employee portal i Admin portal).
-   - Upravljanje stanjem sa Context API-jem (Auth i Cart).
-   - Mock Service Worker (MSW) upotrebljen za 18 naprednih testova koji obezbeđuju integraciju React komponenti pre stvarnog slanja mrežnog zahteva.
-   - Uspešno integrisan production `vite build`.
-
-3. **E2E i Regresija (Playwright)**:
-   - Podignut i iskonfigurisan Playwright unutar `e2e` foldera sa mogućnošću automatskog orkestriranja webServer komandi (kako bi sam podigao test okruženje pre početka E2E testiranja).
-   - Implementirana "End-To-End" simulacija celog toka kupovine: novi kupac -> pretraga kataloga -> dodavanje u korpu -> porudžbina pouzećem -> preuzimanje i izmena statusa od strane ulogovanog zaposlenog radnika.
-   - Skripta `npm run test:regression` je jedinstven izvor istine: izvršava apsolutno sve nivoe na klik - od backend jedinica, do frontend komponenti, optimizovanog build-a i Chromium Playwright end-to-end simulacije.
-
-## Pokretanje projekta za korisnika:
-Za manuelno testiranje projekta, pokrenuti u terminalu `cd frontend && npm run dev` kao i `cd backend && ./mvnw spring-boot:run` i pristupiti aplikaciji putem brauzera na portu 5173.
-
-Projekat se pokazao kao stabilan i otporan na greške u poslovanju!
+## 3. Instrukcije za pokretanje
+- **Backend:** `cd backend && ./mvnw spring-boot:run` (zahteva MAMP MySQL: `root`/`root`, port `8889`, `auto_parts_shop_dev`).
+- **Frontend:** `cd frontend && npm run dev` (dostupno na portu `5173`).
