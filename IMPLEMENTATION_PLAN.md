@@ -4,7 +4,7 @@
 
 Ovo je zivi plan implementacije. Azurira se tokom rada kako faze budu zavrsavane, kako se budu donosile tehnicke odluke i kako testovi budu dodavani.
 
-Trenutni status: planiranje zavrseno, implementacija jos nije zapoceta.
+Trenutni status: scaffold projekta je napravljen; sledeci radni korak je baza i Flyway migracije.
 
 ## 1. Cilj projekta
 
@@ -460,40 +460,40 @@ Legenda statusa:
 
 ### Faza 1 - Scaffold projekta
 
-- [ ] Kreirati `backend/` Spring Boot projekat.
-- [ ] Kreirati `frontend/` React/Vite projekat.
-- [ ] Kreirati root `package.json` za komande.
-- [ ] Dodati osnovni `.gitignore`.
-- [ ] Dodati README sa pokretanjem.
+- [x] Kreirati `backend/` Spring Boot projekat.
+- [x] Kreirati `frontend/` React/Vite projekat.
+- [x] Kreirati root `package.json` za komande.
+- [x] Dodati osnovni `.gitignore`.
+- [x] Dodati README sa pokretanjem.
 
 Backend dependencies:
 
-- [ ] Spring Web.
-- [ ] Spring Data JPA.
-- [ ] Spring Security.
-- [ ] MySQL Connector/J.
-- [ ] Flyway.
-- [ ] Validation.
-- [ ] JJWT ili ekvivalent za JWT.
-- [ ] Spring Boot Test.
-- [ ] Mockito/JUnit.
-- [ ] JaCoCo.
+- [x] Spring Web.
+- [x] Spring Data JPA.
+- [x] Spring Security.
+- [x] MySQL Connector/J.
+- [x] Flyway.
+- [x] Validation.
+- [x] JJWT ili ekvivalent za JWT.
+- [x] Spring Boot Test.
+- [x] Mockito/JUnit.
+- [x] JaCoCo.
 
 Frontend dependencies:
 
-- [ ] React Router.
-- [ ] Vitest.
-- [ ] React Testing Library.
-- [ ] jest-dom.
-- [ ] user-event.
-- [ ] MSW.
+- [x] React Router.
+- [x] Vitest.
+- [x] React Testing Library.
+- [x] jest-dom.
+- [x] user-event.
+- [x] MSW.
 - [ ] Playwright kasnije.
 
 ### Faza 2 - Baza i migracije
 
 - [ ] Napraviti MySQL baze u phpMyAdmin.
-- [ ] Podesiti `application-local-mysql.properties`.
-- [ ] Podesiti `application-test.properties`.
+- [x] Podesiti `application-local-mysql.properties`.
+- [x] Podesiti `application-test.properties`.
 - [ ] Dodati zastitu da test profil koristi samo `auto_parts_shop_test`.
 - [ ] Dodati Flyway migracije.
 - [ ] Dodati seed za admina, zaposlenog, klijenta i artikle.
@@ -704,4 +704,8 @@ Prva verzija se smatra zavrsenom kada:
 | ----- | ------- | ------ |
 | 2026-06-25 | Kreiran `TEST_PLAN.md` na osnovu specifikacije | Zavrseno |
 | 2026-06-25 | Kreiran `IMPLEMENTATION_PLAN.md` | Zavrseno |
-
+| 2026-06-25 | Dodat `.gitignore` sa `projects/` | Zavrseno |
+| 2026-06-25 | Napravljen Spring Boot backend scaffold sa Maven wrapperom | Zavrseno |
+| 2026-06-25 | Napravljen React/Vite frontend scaffold i pocetni ekran | Zavrseno |
+| 2026-06-25 | Dodati root npm scripts, MAMP MySQL profili, frontend test setup i backend health endpoint | Zavrseno |
+| 2026-06-25 | Verifikacija: frontend testovi prolaze, frontend build prolazi, backend compile prolazi sa `-DskipTests` | Zavrseno |
