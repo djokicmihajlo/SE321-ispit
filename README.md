@@ -1,76 +1,76 @@
 # Auto Parts Shop
 
-Full-stack veb aplikacija za prodavnicu auto delova, razvijena kao projekat za predmet **SE321 - Obezbeđenje kvaliteta, testiranje i evolucija softvera**.
+Full-stack aplikacija za prodavnicu auto delova, razvijena kao projekat za predmet SE321 (Obezbedjenje kvaliteta, testiranje i evolucija softvera).
 
-## 🛠 Tehnologije
+## Tehnologije
 
-- **Backend:** Java 17, Spring Boot, Spring Security (JWT), Spring Data JPA, Flyway
-- **Frontend:** React, Vite, React Router, Context API
-- **Baza podataka:** MySQL (prilagođeno za MAMP okruženje)
-- **Testiranje:** 
+- Backend: Java 17, Spring Boot, Spring Security, Spring Data JPA, Flyway
+- Frontend: React, Vite, React Router
+- Baza podataka: MySQL (za MAMP okruzenje)
+- Testiranje: 
   - Backend: JUnit 5, Mockito, MockMvc, JaCoCo
   - Frontend: Vitest, React Testing Library, MSW
   - E2E: Playwright
 
-## ✨ Funkcionalnosti
+## Osnovne funkcionalnosti
 
-- **Klijenti:** Pregled kataloga, pretraga i filtriranje, upravljanje korpom, kreiranje porudžbina (kartica/pouzeće), opcija "Obavesti me" za artikle van stanja, slanje upita za specijalno poručivanje.
-- **Zaposleni:** Pregled i obrada porudžbina (promena statusa), upravljanje specijalnim porudžbinama, upravljanje katalogom artikala.
-- **Administratori:** Dodavanje i upravljanje nalozima zaposlenih.
+- Klijentski deo: Pregled i filtriranje kataloga, korpa, checkout (kartica/pouzece), "Obavesti me" opcija, specijalno porucivanje.
+- Radni deo (zaposleni): Obrada porudzbina i promena statusa, upravljanje specijalnim zahtevima, azuriranje kataloga artikala.
+- Administracija: Upravljanje nalozima zaposlenih.
 
-## 🚀 Pokretanje projekta
+## Pokretanje projekta
 
 ### 1. Baza podataka (MAMP)
 
-Projekat je konfigurisan za rad sa lokalnim MAMP MySQL serverom:
-- **Port:** 8889
-- **Username:** `root`
-- **Password:** `root`
+Konfiguracija za lokalni MAMP MySQL server:
+- Port: 8889
+- Username: root
+- Password: root
 
-U bazi napravite dve šeme (možete koristiti priložene SQL skripte iz `db/` foldera):
-- `auto_parts_shop_dev` (za razvoj)
-- `auto_parts_shop_test` (za automatske testove)
+Potrebno je napraviti dve baze:
+- auto_parts_shop_dev (za razvoj)
+- auto_parts_shop_test (za testove)
 
-Flyway migracije će automatski kreirati tabele i ubaciti početne podatke pri prvom pokretanju (admin kredencijali: `admin@autodelovi.test` / `Password1!`).
+Flyway migracije automatski kreiraju tabele i seed podatke pri prvom pokretanju backenda.
+Pocetni nalog za admina: admin@autodelovi.test / Password1!
 
-### 2. Pokretanje
+### 2. Pokretanje aplikacije
 
-Iz korenskog foldera možete koristiti npm skripte:
+Iz glavnog foldera koriste se sledece npm skripte:
 
-**Pokretanje backenda:**
+Pokretanje backenda:
 ```bash
 npm run backend
 ```
-*(Alternativno: `cd backend && ./mvnw spring-boot:run -Dspring-boot.run.profiles=local-mysql`)*
+(Ili rucno: cd backend && ./mvnw spring-boot:run -Dspring-boot.run.profiles=local-mysql)
 
-**Pokretanje frontenda:**
+Pokretanje frontenda:
 ```bash
 npm run frontend
 ```
-*(Aplikacija će biti dostupna na http://localhost:5173)*
 
-## 🧪 Testiranje
+## Testiranje
 
-Projekat sadrži sveobuhvatan paket testova sa visokom pokrivenošću.
+Svi testovi se mogu pokrenuti preko predefinisanih npm skripti.
 
-**Backend testovi (Unit & Integracioni):**
+Backend testovi (Unit i Integracioni):
 ```bash
 npm run test:backend
 ```
 
-**Frontend testovi (Komponente & MSW):**
+Frontend testovi:
 ```bash
 npm run test:frontend
 ```
 
-**E2E Testovi (Playwright):**
+E2E Testovi (Playwright):
 ```bash
 npm run test:e2e
 ```
 
-**Svi testovi odjednom (Regression):**
+Pokretanje cele testne suite:
 ```bash
 npm run test:regression
 ```
 
-*Za detaljnije informacije o planu testiranja i rezultatima, pogledajte `docs/TEST_PLAN.md` i `docs/TEST_RESULTS.md`.*
+Detaljnija dokumentacija o testiranju nalazi se u docs/TEST_PLAN.md i docs/TEST_RESULTS.md fajlovima.
