@@ -1,0 +1,169 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Header / Nav ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #d8dee4;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: #172026;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+}
+
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #51616b;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover {
+  color: #172026;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #172026;
+}
+
+.nav-role {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #5b6b75;
+  background: #eef1f4;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  border: 1px solid #172026;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.login-btn {
+  color: #172026;
+  background: #ffffff;
+}
+
+.login-btn:hover {
+  background: #f4f6f8;
+}
+
+.register-btn {
+  color: #ffffff;
+  background: #172026;
+}
+
+.register-btn:hover {
+  background: #2a3a44;
+}
+
+.logout-btn {
+  color: #172026;
+  background: #ffffff;
+}
+
+.logout-btn:hover {
+  background: #f4f6f8;
+}
+
+/* ---- Content ---- */
+.site-content {
+  flex: 1;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid #d8dee4;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  color: #5b6b75;
+  font-size: 0.82rem;
+}
+
+/* ---- Loading ---- */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #5b6b75;
+  font-size: 0.95rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 760px) {
+  .site-nav {
+    gap: 12px;
+  }
+
+  .nav-links {
+    order: 3;
+    flex-basis: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .nav-auth {
+    order: 2;
+  }
+}

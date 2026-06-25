@@ -4,7 +4,7 @@
 
 Ovo je zivi plan implementacije. Azurira se tokom rada kako faze budu zavrsavane, kako se budu donosile tehnicke odluke i kako testovi budu dodavani.
 
-Trenutni status: backend specijalno porucivanje je implementirano i pokriveno API testovima; sledeci radni korak je frontend auth i osnovni layout.
+Trenutni status: frontend katalog, korpa i checkout su implementirani; sledeci radni korak su frontend employee/admin rute (Faza 13).
 
 ## 1. Cilj projekta
 
@@ -581,32 +581,32 @@ Planirane migracije:
 
 ### Faza 10 - Frontend auth i layout
 
-- [ ] Kreirati osnovni layout.
-- [ ] Implementirati `api` servis.
-- [ ] Implementirati `AuthContext`.
-- [ ] Implementirati `ProtectedRoute`.
-- [ ] Implementirati login stranu.
-- [ ] Implementirati register stranu.
-- [ ] Implementirati role-based navigaciju.
-- [ ] Dodati frontend testove za auth.
+- [x] Kreirati osnovni layout.
+- [x] Implementirati `api` servis.
+- [x] Implementirati `AuthContext`.
+- [x] Implementirati `ProtectedRoute`.
+- [x] Implementirati login stranu.
+- [x] Implementirati register stranu.
+- [x] Implementirati role-based navigaciju.
+- [x] Dodati frontend testove za auth.
 
 ### Faza 11 - Frontend katalog i korpa
 
-- [ ] Implementirati `PartList`.
-- [ ] Implementirati filtere.
-- [ ] Implementirati `PartCard`.
-- [ ] Implementirati `PartDetails`.
-- [ ] Implementirati `CartContext`.
-- [ ] Implementirati `CartPage`.
-- [ ] Dodati MSW testove za listu, filtere i korpu.
+- [x] Implementirati `PartList`.
+- [x] Implementirati filtere.
+- [x] Implementirati `PartCard`.
+- [x] Implementirati `PartDetails`.
+- [x] Implementirati `CartContext`.
+- [x] Implementirati `CartPage`.
+- [x] Dodati MSW testove za listu, filtere i korpu.
 
 ### Faza 12 - Frontend checkout
 
-- [ ] Implementirati checkout formu.
-- [ ] Implementirati izbor placanja karticom/pouzecem.
-- [ ] Implementirati potvrdu porudzbine.
-- [ ] Implementirati istoriju porudzbina klijenta.
-- [ ] Dodati frontend test za slanje porudzbine backendu.
+- [x] Implementirati checkout formu.
+- [x] Implementirati izbor placanja karticom/pouzecem.
+- [x] Implementirati potvrdu porudzbine.
+- [x] Implementirati istoriju porudzbina klijenta.
+- [x] Dodati frontend test za slanje porudzbine backendu.
 
 ### Faza 13 - Frontend employee/admin
 
@@ -725,3 +725,7 @@ Prva verzija se smatra zavrsenom kada:
 | 2026-06-25 | Regresija prolazi posle notification faze: 28 backend testova, 2 frontend testa i frontend build | Zavrseno |
 | 2026-06-25 | Implementirano backend specijalno porucivanje: public/client kreiranje, client pregled i employee obrada/status | Zavrseno |
 | 2026-06-25 | Regresija prolazi posle special order faze: 33 backend testa, 2 frontend testa i frontend build | Zavrseno |
+| 2026-06-25 | Implementiran frontend auth: Layout, api servis, AuthContext, ProtectedRoute, login/register stranice, role-based navigacija | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle frontend auth faze: 33 backend testa, 12 frontend testova i frontend build | Zavrseno |
+| 2026-06-25 | Implementirane faze 11 i 12: Katalog, detalji artikla, korpa, checkout i istorija porudzbina sa MSW testovima | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle faze 12: 33 backend testa, 16 frontend testova i frontend build | Zavrseno |

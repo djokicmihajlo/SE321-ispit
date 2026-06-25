@@ -1,4 +1,13 @@
 import { Link, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import ProtectedRoute from './components/ProtectedRoute'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import PartsPage from './pages/PartsPage'
+import PartDetailsPage from './pages/PartDetailsPage'
+import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
+import OrdersPage from './pages/OrdersPage'
 import './App.css'
 
 const featureCards = [
@@ -66,11 +75,53 @@ function PlaceholderPage({ title }) {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/parts" element={<PlaceholderPage title="Katalog artikala" />} />
-      <Route path="/special-order" element={<PlaceholderPage title="Specijalno porucivanje" />} />
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/parts" element={<PartsPage />} />
+        <Route path="/parts/:id" element={<PartDetailsPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/special-order" element={<PlaceholderPage title="Specijalno porucivanje" />} />
+
+        {/* Zasticene klijentske rute */}
+        <Route path="/checkout" element={
+          <ProtectedRoute roles={['CLIENT']}>
+            <CheckoutPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/orders" element={
+          <ProtectedRoute roles={['CLIENT']}>
+            <OrdersPage />
+          </ProtectedRoute>
+        } />
+
+        {/* Zasticene employee rute */}
+        <Route path="/employee/orders" element={
+          <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
+            <PlaceholderPage title="Pregled porudzbina" />
+          </ProtectedRoute>
+        } />
+        <Route path="/employee/parts" element={
+          <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
+            <PlaceholderPage title="Upravljanje artiklima" />
+          </ProtectedRoute>
+        } />
+        <Route path="/employee/special-orders" element={
+          <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
+            <PlaceholderPage title="Specijalni zahtevi" />
+          </ProtectedRoute>
+        } />
+
+        {/* Zasticena admin ruta */}
+        <Route path="/admin/employees" element={
+          <ProtectedRoute roles={['ADMIN']}>
+            <PlaceholderPage title="Upravljanje zaposlenima" />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </Layout>
   )
 }
 

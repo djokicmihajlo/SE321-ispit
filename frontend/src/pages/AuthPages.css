@@ -1,0 +1,138 @@
+/* ---- Zajednicki stilovi za Login i Register ---- */
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  padding: 32px 16px;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid #d8dee4;
+  border-radius: 8px;
+  padding: 36px 32px;
+}
+
+.auth-form h1 {
+  margin-bottom: 6px;
+  font-size: 1.6rem;
+  color: #111820;
+}
+
+.auth-subtitle {
+  margin-bottom: 24px;
+  color: #51616b;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 14px;
+  color: #172026;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.auth-form label:first-of-type {
+  margin-top: 0;
+}
+
+.auth-form input {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #c8cfd5;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  color: #172026;
+  background: #fafbfc;
+  transition: border-color 0.15s;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #172026;
+  background: #ffffff;
+}
+
+.auth-form input::placeholder {
+  color: #9ca9b2;
+}
+
+.auth-error {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.auth-submit {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #172026;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background: #2a3a44;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  margin-top: 18px;
+  margin-bottom: 0;
+  text-align: center;
+  color: #51616b;
+  font-size: 0.88rem;
+}
+
+.auth-footer a {
+  color: #172026;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-field label {
+  margin-top: 0;
+}
+
+@media (max-width: 480px) {
+  .auth-form {
+    padding: 28px 18px;
+  }
+
+  .auth-row {
+    grid-template-columns: 1fr;
+  }
+}
