@@ -50,7 +50,7 @@ export default function OrdersPage() {
                 <ul style={{ margin: 0, paddingLeft: '20px', color: '#51616b' }}>
                   {order.items.map(item => (
                     <li key={item.id} style={{ marginBottom: '6px' }}>
-                      {item.partName} x {item.quantity} - {item.subtotal.toFixed(2)} RSD
+                      {item.partName} x {item.quantity} - {item.lineTotal.toFixed(2)} RSD
                     </li>
                   ))}
                 </ul>

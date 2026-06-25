@@ -4,7 +4,7 @@
 
 Ovo je zivi plan implementacije. Azurira se tokom rada kako faze budu zavrsavane, kako se budu donosile tehnicke odluke i kako testovi budu dodavani.
 
-Trenutni status: frontend katalog, korpa i checkout su implementirani; sledeci radni korak su frontend employee/admin rute (Faza 13).
+Trenutni status: **Sve faze (1 do 15) su uspešno završene! Projekat je spreman za isporuku.**
 
 ## 1. Cilj projekta
 
@@ -610,31 +610,31 @@ Planirane migracije:
 
 ### Faza 13 - Frontend employee/admin
 
-- [ ] Implementirati employee orders page.
-- [ ] Implementirati employee parts CRUD page.
-- [ ] Implementirati special orders employee page.
-- [ ] Implementirati admin employees page.
-- [ ] Dodati frontend testove za role i glavne akcije.
+- [x] Implementirati employee orders page.
+- [x] Implementirati employee parts CRUD page.
+- [x] Implementirati special orders employee page.
+- [x] Implementirati admin employees page.
+- [x] Dodati frontend testove za role i glavne akcije.
 
 ### Faza 14 - E2E i regresija
 
-- [ ] Kreirati `e2e/` Playwright projekat.
-- [ ] Podesiti Playwright da podize backend i frontend.
-- [ ] Dodati e2e helper za registraciju/login.
-- [ ] Dodati checkout e2e test.
-- [ ] Dodati employee order status e2e test.
+- [x] Kreirati `e2e/` Playwright projekat.
+- [x] Podesiti Playwright da podize backend i frontend.
+- [x] Dodati e2e helper za registraciju/login.
+- [x] Dodati checkout e2e test.
+- [x] Dodati employee order status e2e test.
 - [x] Dodati root `test:regression` komandu.
 
 ### Faza 15 - Zavrsna verifikacija
 
-- [ ] Pokrenuti backend testove.
-- [ ] Pokrenuti frontend testove.
-- [ ] Pokrenuti frontend build.
-- [ ] Pokrenuti e2e testove.
-- [ ] Proveriti aplikaciju rucno kroz MAMP MySQL.
-- [ ] Azurirati `TEST_PLAN.md` ako se plan promenio.
-- [ ] Azurirati `IMPLEMENTATION_PLAN.md` sa zavrsnim statusom.
-- [ ] Dodati kratak zavrsni izvestaj.
+- [x] Pokrenuti backend testove.
+- [x] Pokrenuti frontend testove.
+- [x] Pokrenuti frontend build.
+- [x] Pokrenuti e2e testove.
+- [x] Proveriti aplikaciju rucno kroz MAMP MySQL.
+- [x] Azurirati `TEST_PLAN.md` ako se plan promenio.
+- [x] Azurirati `IMPLEMENTATION_PLAN.md` sa zavrsnim statusom.
+- [x] Dodati kratak zavrsni izvestaj.
 
 ## 11. Redosled rada u praksi
 
@@ -729,3 +729,7 @@ Prva verzija se smatra zavrsenom kada:
 | 2026-06-25 | Regresija prolazi posle frontend auth faze: 33 backend testa, 12 frontend testova i frontend build | Zavrseno |
 | 2026-06-25 | Implementirane faze 11 i 12: Katalog, detalji artikla, korpa, checkout i istorija porudzbina sa MSW testovima | Zavrseno |
 | 2026-06-25 | Regresija prolazi posle faze 12: 33 backend testa, 16 frontend testova i frontend build | Zavrseno |
+| 2026-06-25 | Implementirana Faza 13: Zaposleni (porudzbine, artikli, specijalni zahtevi) i Admin (zaposleni) frontend rute | Zavrseno |
+| 2026-06-25 | Regresija prolazi posle faze 13: 33 backend testa, 18 frontend testova i frontend build | Zavrseno |
+| 2026-06-25 | Faza 14 zavrsena: Dodati Playwright E2E testovi za autentifikaciju i kupovinu od starta do kraja | Zavrseno |
+| 2026-06-25 | Finalna regresija uspesna: Backend, Frontend MSW, Frontend Build i Playwright E2E | Zavrseno |

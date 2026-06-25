@@ -9,6 +9,7 @@
     "test:frontend": "cd frontend && npm run test",
     "build": "cd frontend && npm run build",
     "check": "npm run test:frontend && npm run build",
-    "test:regression": "npm run test:backend && npm run test:frontend && npm run build"
+    "test:e2e": "cd e2e && npx playwright test",
+    "test:regression": "npm run test:backend && npm run test:frontend && npm run build && npm run test:e2e"
   }
 }

@@ -8,6 +8,10 @@ import PartDetailsPage from './pages/PartDetailsPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import OrdersPage from './pages/OrdersPage'
+import EmployeeOrdersPage from './pages/EmployeeOrdersPage'
+import EmployeePartsPage from './pages/EmployeePartsPage'
+import EmployeeSpecialOrdersPage from './pages/EmployeeSpecialOrdersPage'
+import AdminEmployeesPage from './pages/AdminEmployeesPage'
 import './App.css'
 
 const featureCards = [
@@ -100,24 +104,24 @@ function App() {
         {/* Zasticene employee rute */}
         <Route path="/employee/orders" element={
           <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
-            <PlaceholderPage title="Pregled porudzbina" />
+            <EmployeeOrdersPage />
           </ProtectedRoute>
         } />
         <Route path="/employee/parts" element={
           <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
-            <PlaceholderPage title="Upravljanje artiklima" />
+            <EmployeePartsPage />
           </ProtectedRoute>
         } />
         <Route path="/employee/special-orders" element={
           <ProtectedRoute roles={['EMPLOYEE', 'ADMIN']}>
-            <PlaceholderPage title="Specijalni zahtevi" />
+            <EmployeeSpecialOrdersPage />
           </ProtectedRoute>
         } />
 
         {/* Zasticena admin ruta */}
         <Route path="/admin/employees" element={
           <ProtectedRoute roles={['ADMIN']}>
-            <PlaceholderPage title="Upravljanje zaposlenima" />
+            <AdminEmployeesPage />
           </ProtectedRoute>
         } />
       </Routes>
