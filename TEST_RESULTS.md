@@ -44,7 +44,10 @@ Poslednji zabeleženi rezultat:
 | Metrika | Pokrivenost |
 |---|---|
 | Izvršeni testovi | 20 / 20 (100%) |
-| Statements / Lines | Očekivano > 80% |
+| Lines (Linije koda) | 64.31% |
+| Statements (Naredbe) | 62.88% |
+| Functions (Funkcije) | 58.18% |
+| Branches (Grane) | 54.62% |
 
 ## 2. Backend testiranje
 
